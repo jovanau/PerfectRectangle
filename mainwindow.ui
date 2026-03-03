@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Perfect Rectangle</string>
+  </property>
+
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitterMain">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+
+      <!-- LEFT PANEL -->
+      <widget class="QWidget" name="leftPanel">
+       <layout class="QVBoxLayout" name="leftLayout">
+
+        <!-- TABLE -->
+        <item>
+         <widget class="QTableWidget" name="tableWidget">
+          <column>
+           <property name="text"><string>x1</string></property>
+          </column>
+          <column>
+           <property name="text"><string>y1</string></property>
+          </column>
+          <column>
+           <property name="text"><string>x2</string></property>
+          </column>
+          <column>
+           <property name="text"><string>y2</string></property>
+          </column>
+         </widget>
+        </item>
+
+        <!-- INPUT GROUP -->
+        <item>
+         <widget class="QGroupBox" name="groupInput">
+          <property name="title">
+           <string>Rectangle input</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+
+           <item row="0" column="0">
+            <widget class="QLabel">
+             <property name="text"><string>x1</string></property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSpinBox" name="spinX1"/>
+           </item>
+
+           <item row="0" column="2">
+            <widget class="QLabel">
+             <property name="text"><string>y1</string></property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QSpinBox" name="spinY1"/>
+           </item>
+
+           <item row="1" column="0">
+            <widget class="QLabel">
+             <property name="text"><string>x2</string></property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSpinBox" name="spinX2"/>
+           </item>
+
+           <item row="1" column="2">
+            <widget class="QLabel">
+             <property name="text"><string>y2</string></property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QSpinBox" name="spinY2"/>
+           </item>
+
+           <item row="2" column="0" colspan="4">
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QPushButton" name="btnAdd">
+               <property name="text"><string>Add</string></property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnRemove">
+               <property name="text"><string>Remove selected</string></property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnClear">
+               <property name="text"><string>Clear</string></property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+
+          </layout>
+         </widget>
+        </item>
+
+        <!-- STEP MODE -->
+        <item>
+         <widget class="QGroupBox" name="groupStep">
+          <property name="title">
+           <string>Step mode</string>
+          </property>
+          <layout class="QHBoxLayout">
+           <item>
+            <widget class="QSlider" name="sliderStep">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="labelStep">
+             <property name="text">
+              <string>0/0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+
+      <!-- RIGHT PANEL -->
+      <widget class="QWidget" name="rightPanel">
+       <layout class="QVBoxLayout" name="rightLayout">
+        <item>
+         <widget class="QGraphicsView" name="graphicsView"/>
+        </item>
+       </layout>
+      </widget>
+
+     </widget>
+    </item>
+   </layout>
+  </widget>
+
+  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QStatusBar" name="statusbar"/>
+
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

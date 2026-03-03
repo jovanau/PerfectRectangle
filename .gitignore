@@ -1,0 +1,28 @@
+# Qt Creator
+*.user
+*.pro.user
+*.autosave
+CMakeLists.txt.user
+
+# Build 
+build/
+build-*/
+cmake-build-*/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+# Linux
+*.o
+*.so
+*.a
+
+# Qt
+*.qrc.depends
+*.moc
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
