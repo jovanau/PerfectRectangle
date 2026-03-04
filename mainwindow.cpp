@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "perfectrectangle.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
@@ -41,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnRemove, &QPushButton::clicked, this, &MainWindow::onRemoveSelected);
     connect(ui->btnClear, &QPushButton::clicked, this, &MainWindow::onClear);
     connect(ui->sliderStep, &QSlider::valueChanged, this, &MainWindow::onStepChanged);
+    connect(ui->btnCheck, &QPushButton::clicked, this, &MainWindow::onCheck);
 
     redrawScene(0);
 }
@@ -142,4 +144,27 @@ void MainWindow::redrawScene(int k) {
     bounds.adjust(-1, -1, 1, 1);
     m_scene->setSceneRect(bounds);
     // Не fit-ујемо сваки пут да не “ломи” zoom; имаш reset по потреби касније.
+}
+
+void MainWindow::onCheck() {
+    CheckResult r = checkPerfectRectangle(m_rects);
+
+    if (r.ok) {
+        ui->labelStatus->setText("OK ✅ Perfect Rectangle");
+        ui->labelStatus->setStyleSheet("font-weight:700; font-size:16px; padding:6px; background:#e7f7ea; border:1px solid #a7dfb0;");
+    } else {
+        ui->labelStatus->setText("FAIL ❌ Not Perfect");
+        ui->labelStatus->setStyleSheet("font-weight:700; font-size:16px; padding:6px; background:#fdeaea; border:1px solid #f2b3b3;");
+    }
+
+    ui->labelStats->setText(
+        QString("Reason: %1\n"
+                "sumArea=%2, outerArea=%3\n"
+                "Outer: [%4,%5,%6,%7]\n"
+                "oddCorners=%8")
+            .arg(r.reason)
+            .arg(r.sumArea).arg(r.outerArea)
+            .arg(r.outer.x1).arg(r.outer.y1).arg(r.outer.x2).arg(r.outer.y2)
+            .arg(r.oddCorners.size())
+        );
 }

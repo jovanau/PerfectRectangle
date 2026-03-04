@@ -3,14 +3,11 @@
 
 #include <QMainWindow>
 #include <QVector>
+#include "perfectrectangle.h"
 
 class QGraphicsScene;
 
 #include "graphicsview.h"
-
-struct RectLL {
-    long long x1, y1, x2, y2;
-};
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,6 +25,7 @@ private slots:
     void onRemoveSelected();
     void onClear();
     void onStepChanged(int k);
+    void onCheck();
 
 private:
     Ui::MainWindow *ui = nullptr;

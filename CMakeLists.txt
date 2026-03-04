@@ -19,6 +19,8 @@ set(PROJECT_SOURCES
         mainwindow.ui
         graphicsview.cpp
         graphicsview.h
+        perfectrectangle.cpp
+        perfectrectangle.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -26,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         graphicsview.h graphicsview.cpp
+        perfectrectangle.h perfectrectangle.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET PerfectRectangle APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
