@@ -1,4 +1,4 @@
-# Perfect Rectangle — Qt Visualization
+# Perfect Rectangle - Qt Visualization
 
 A C++ Qt application that verifies whether a set of axis-aligned rectangles forms one perfect rectangle without gaps or overlaps.
 
