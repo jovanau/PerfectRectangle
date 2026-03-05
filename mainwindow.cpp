@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QTableWidgetItem>
+#include <QGraphicsEllipseItem>
 #include <QBrush>
 #include <QPen>
 #include <algorithm>
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(m_scene);
 
-    // Table setup (if not already set in Designer)
+    // Table setup
     ui->tableWidget->setColumnCount(4);
     ui->tableWidget->setHorizontalHeaderLabels({"x1","y1","x2","y2"});
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -83,7 +84,7 @@ void MainWindow::onAdd() {
     addRowToTable(r);
 
     ui->sliderStep->setRange(0, m_rects.size());
-    ui->sliderStep->setValue(m_rects.size()); // jump to full view
+    ui->sliderStep->setValue(m_rects.size());
 
     redrawScene(ui->sliderStep->value());
 }
@@ -143,10 +144,15 @@ void MainWindow::redrawScene(int k) {
     QRectF bounds = m_scene->itemsBoundingRect();
     bounds.adjust(-1, -1, 1, 1);
     m_scene->setSceneRect(bounds);
-    // Не fit-ујемо сваки пут да не “ломи” zoom; имаш reset по потреби касније.
+
+    if (m_rects.size() <= 2) {
+        ui->graphicsView->fitInView(m_scene->sceneRect(), Qt::KeepAspectRatio);
+    }
 }
 
 void MainWindow::onCheck() {
+    redrawScene(ui->sliderStep->value());
+
     CheckResult r = checkPerfectRectangle(m_rects);
 
     if (r.ok) {
@@ -155,6 +161,19 @@ void MainWindow::onCheck() {
     } else {
         ui->labelStatus->setText("FAIL ❌ Not Perfect");
         ui->labelStatus->setStyleSheet("font-weight:700; font-size:16px; padding:6px; background:#fdeaea; border:1px solid #f2b3b3;");
+    }
+
+    QPen dotPen(Qt::NoPen);
+    QBrush dotBrush(Qt::red);
+
+    const auto& corners = r.oddCorners;
+    for (const auto& p : corners) {
+        auto* dot = new QGraphicsEllipseItem(-4, -4, 8, 8);
+        dot->setPen(dotPen);
+        dot->setBrush(dotBrush);
+        dot->setPos(p.x(), -p.y());
+        dot->setFlag(QGraphicsItem::ItemIgnoresTransformations, true);
+        m_scene->addItem(dot);
     }
 
     ui->labelStats->setText(

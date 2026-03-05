@@ -12,7 +12,7 @@ struct CheckResult {
     RectLL outer{0,0,0,0};
     long long sumArea = 0;
     long long outerArea = 0;
-    QVector<QPointF> oddCorners; // за Дан 3 (сад само попуњавамо)
+    QVector<QPointF> oddCorners;
     QString reason;
 };
 
