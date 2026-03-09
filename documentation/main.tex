@@ -172,6 +172,47 @@ O(n)
 
 jer se u memoriji čuva skup temena.
 
+\section{Primeri}
+
+U nastavku su prikazani karakteristični primeri ulaznih podataka koji ilustruju rad algoritma.
+
+\subsection{Jednostavan primer ispravne konfiguracije}
+
+Prvi primer predstavlja skup od četiri manja pravougaonika koji zajedno formiraju jedan veći pravougaonik bez preklapanja i bez praznina:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$x_1$ & $y_1$ & $x_2$ & $y_2$ \\
+\hline
+1 & 1 & 2 & 2 \\
+2 & 1 & 3 & 2 \\
+1 & 2 & 2 & 3 \\
+2 & 2 & 3 & 3 \\
+\hline
+\end{tabular}
+\end{center}
+
+U ovom slučaju pravougaonici zajedno formiraju spoljašnji pravougaonik sa koordinatama $(1,1)$ i $(3,3)$. 
+Zbir površina svih pravougaonika jednak je površini spoljašnjeg pravougaonika, a nakon primene provere parnosti temena ostaju tačno četiri spoljašnja temena. 
+Zbog toga algoritam vraća pozitivan rezultat.
+
+\subsection{Primer neispravne konfiguracije}
+
+Sledeći primer ilustruje situaciju u kojoj zbir površina može ukazivati na problem zbog preklapanja. 
+Pravougaonici su definisani na sledeći način:
+
+\begin{itemize}
+    \item $R_1$: $(0,0)-(2,2)$
+    \item $R_2$: $(2,0)-(4,2)$
+    \item $R_3$: $(0,2)-(2,4)$
+    \item $R_4$: $(2,2)-(4,4)$
+    \item $R_5$: $(1,1)-(3,3)$
+\end{itemize}
+
+U ovom primeru pravougaonik $R_5$ preseca centralne delove ostalih pravougaonika, pa dolazi do preklapanja. 
+Zbog toga konfiguracija nije validna, i algoritam ispravno prijavljuje da dati skup pravougaonika ne formira savršen pravougaonik.
+
 \section{Zaključak}
 
 U ovom projektu implementiran je algoritam za proveru da li skup pravougaonika formira savršen pravougaonik.
@@ -181,5 +222,21 @@ Kombinacijom provere površine i provere parnosti temena moguće je efikasno det
 Razvijena aplikacija omogućava i grafičku vizuelizaciju rezultata, čime se algoritam lakše razume i analizira.
 
 Ovakav pristup predstavlja dobar primer primene algoritama računarske geometrije u interaktivnim softverskim sistemima.
+
+\vspace{200pt}
+
+\section{Prikaz aplikacije}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\linewidth]{ga_slika2.png}
+    \label{fig:aplikacija1}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\linewidth]{ga_slika3.png}
+    \label{fig:aplikacija2}
+\end{figure}
 
 \end{document}
